@@ -30,14 +30,14 @@ public class NonPersistentUserRepository implements UserRepositoryOld<User, UUID
     }
 
     @Override
-    public User findById(UUID id) {
+    public User findById(UUID id) {/*
         if(this.interalData.contains(id)){
             for(User u : this.interalData){
                 if(u.getId().equals(id)){
                     return u;
                 }
             }
-        }
+        }*/
         return null;
     }
 

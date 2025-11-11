@@ -37,6 +37,9 @@ public class User{
         this.id = UUID.randomUUID();
     }
 
+    public UUID getID(){
+        return null;
+    }
 //    public User(UUID id, String name, String email, String password) {
 //        this.id = id;
 //        this.name = name;
