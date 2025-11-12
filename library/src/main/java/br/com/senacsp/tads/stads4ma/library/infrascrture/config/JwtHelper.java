@@ -13,12 +13,22 @@ public class JwtHelper {
 
     private String secret = "Algo aleatorio";
     private final int EXPIRATION = 1000*60*60*15;
+    private final int EXPIRATION_REFRESH_TOKEN = 1000*60*60;
 
     public String generateToken(UserDatails userDetails){
         return Jwts.builder()
         .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+                .signWith(getSingningKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateRefreshToken(UserDatails userDetails){
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
                 .signWith(getSingningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

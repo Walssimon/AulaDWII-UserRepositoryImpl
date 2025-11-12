@@ -20,7 +20,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+
     private final UserDatailsService userDatailsService;
+
     private final JwtAuthFilter jwtAuthFilter;
     private final CorsConfigurationSource corsConfigurationSource;
 
@@ -50,17 +52,17 @@ public class SecurityConfig {
                 .build();
 
     }
-
+    @Bean
     private AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsPasswordService(this.userDatailsService);
         provider.setPasswordEncoder(passwordEnconder());
         return provider;
     }
-
+    @Bean
     private  PasswordEnconder passwordEnconder(){return new BCryptPasswordEncoder();}
-
-    private AuthenticationManager authManeger(){
+    @Bean
+    private AuthenticationManager authenticationManager(){
         var authProvider = new DaoAuthenticationProvider();
         authProvider.setPasswordEncoder(this.userDatailsService);
         authProvider.setPasswordEncoder(passwordEnconder());
